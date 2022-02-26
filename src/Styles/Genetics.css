@@ -1,0 +1,11 @@
+.MuiChip-root.visibleGenes {
+  background-color: #e6d5f2;
+}
+
+.MuiChip-root.hiddenGenes {
+  background-color: #ede9ef;
+}
+
+.hiddenPheno {
+  color: #887b8e;
+}

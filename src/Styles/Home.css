@@ -1,0 +1,19 @@
+.home-grid {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  padding: 1rem;
+  min-height: calc(100vh);
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  color: var(--theme-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--theme-color-dark);
+}
