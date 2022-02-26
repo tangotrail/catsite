@@ -1,5 +1,5 @@
 export interface Genome {
-  species?: Species;
+  species?: Species[];
   wind?: Wind[];
   furtype?: Furtype[];
   color?: (Color | number)[];
@@ -7,6 +7,26 @@ export interface Genome {
   whitespotting?: (Whitespotting | number)[];
   growth?: Growth[];
 }
+
+export enum Trait {
+  SPECIES = "Species",
+  WIND = "Wind",
+  FURTYPE = "Fur type",
+  COLOR = "Color",
+  PATTERN = "Pattern",
+  WHITESPOTTING = "White spotting",
+  GROWTH = "Growth",
+}
+
+export type Gene =
+  | Species
+  | Wind
+  | Furtype
+  | Color
+  | Pattern
+  | Whitespotting
+  | Growth
+  | number;
 
 export enum Species {
   NOTCAT = "C",
@@ -51,16 +71,6 @@ export enum Growth {
   B = "B",
   C = "C",
 }
-
-export const Traits: string[] = [
-  "Species",
-  "Wind",
-  "Fur type",
-  "Color",
-  "Pattern",
-  "White spotting",
-  "Growth",
-];
 
 export const colorMap: Map<string, string> = new Map([
   [`${Color.BLACK}, ${Color.FULL}, 4`, "Black"],

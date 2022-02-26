@@ -21,8 +21,7 @@ const GenomeParser = (props: GenomeParserProps) => {
   const [phenotype, setPhenotype] = useState<string[]>([]);
 
   useEffect(() => {
-    const genomeResults: [GT.Genome, string[]] =
-      GL.stringToGenome(genomeString);
+    const genomeResults: [GT.Genome, string[]] = GL.stringToGenome(genomeString);
     setGenome(genomeResults[0]);
     setFields(genomeResults[1]);
   }, [genomeString]);
@@ -50,45 +49,48 @@ const GenomeParser = (props: GenomeParserProps) => {
       </Grid>
       {fields.length !== 0 && (
         <Grid container>
-          {fields.map((item, index) => (
-            <>
-              <Grid
-                xs={2}
-                md={4}
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  marginTop: ".5em",
-                }}
-              >
-                <Chip
-                  label={item}
-                  size="small"
-                  className={visible[index] ? "visibleGenes" : "hiddenGenes"}
-                />
-              </Grid>
-              <Grid
-                xs={5}
-                md={4}
-                sx={{
-                  marginTop: ".5em",
-                  textAlign: "right",
-                  paddingRight: "1em",
-                }}
-                className="bold"
-              >
-                {phenotype.length > index && GT.Traits[index]}
-              </Grid>
-              <Grid
-                xs={5}
-                md={4}
-                sx={{ marginTop: ".5em" }}
-                className={visible[index] ? "visiblePheno" : "hiddenPheno"}
-              >
-                {phenotype.length > index && phenotype[index]}
-              </Grid>
-            </>
-          ))}
+          {fields.map((item, index) => {
+            if (index >= Object.keys(GT.Trait).length) return <></>;
+            return (
+              <>
+                <Grid
+                  xs={2}
+                  md={4}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: ".5em",
+                  }}
+                >
+                  <Chip
+                    label={item}
+                    size="small"
+                    className={visible[index] ? "visibleGenes" : "hiddenGenes"}
+                  />
+                </Grid>
+                <Grid
+                  xs={5}
+                  md={4}
+                  sx={{
+                    marginTop: ".5em",
+                    textAlign: "right",
+                    paddingRight: "1em",
+                  }}
+                  className="bold"
+                >
+                  {phenotype.length > index && Object.values(GT.Trait)[index]}
+                </Grid>
+                <Grid
+                  xs={5}
+                  md={4}
+                  sx={{ marginTop: ".5em" }}
+                  className={visible[index] ? "visiblePheno" : "hiddenPheno"}
+                >
+                  {phenotype.length > index && phenotype[index]}
+                </Grid>
+              </>
+            );
+          })}
         </Grid>
       )}
     </Box>
